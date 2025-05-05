@@ -1,7 +1,8 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
-import axios from '../api/axios'; 
-import { jwtDecode } from 'jwt-decode';
+import { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import axios from "../api/axios";
+import { jwtDecode } from "jwt-decode";
+import toast from "react-hot-toast";
 
 interface User {
   Username: string;
@@ -24,7 +25,9 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
+  const [token, setToken] = useState<string | null>(
+    localStorage.getItem("token")
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,22 +37,42 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [token]);
 
+  // src/auth/AuthProvider.tsx (inside AuthProvider)
   const login = async (username: string, password: string) => {
-    const res = await axios.post('/AdminAccount/Login', { UserName: username, Password: password });
-    if (res.data.Success) {
-      setToken(res.data.Token);
-      setUser(res.data.User);
-      localStorage.setItem('token', res.data.Token);
-      localStorage.setItem('refreshToken', res.data.RefreshToken);
-      navigate('/dashboard');
+    try {
+      const res = await axios.post("/AdminAccount/Login", {
+        UserName: username,
+        Password: password,
+      });
+
+      if (res.data?.Success && res.data.Token) {
+        setToken(res.data.Token);
+        setUser(res.data.User || jwtDecode(res.data.Token).User || null);
+
+        localStorage.setItem("token", res.data.Token);
+        localStorage.setItem("refreshToken", res.data.RefreshToken);
+
+        navigate("/dashboard");
+      } else {
+        throw new Error(res.data.Message || "Login failed");
+      }
+    } catch (err: any) {
+      const message =
+      err.response?.data?.Message ||
+      err.response?.statusText ||
+        "Unexpected error during login";
+      console.log("err", err);
+      toast.error(message || "Something went wrong.")
+      throw new Error(message);
     }
   };
 
   const logout = () => {
     setToken(null);
     setUser(null);
+
     localStorage.clear();
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
@@ -61,6 +84,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
-  if (!context) throw new Error('useAuth must be used within an AuthProvider');
+  if (!context) throw new Error("useAuth must be used within an AuthProvider");
   return context;
 };
