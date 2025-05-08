@@ -1,8 +1,8 @@
-
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router'; // Fixed import from 'react-router' to 'react-router-dom'
+import { Link } from 'react-router'; // Fixed import to react-router-dom
 import { CgSpinner } from "react-icons/cg";
 import { FaTrash, FaShoppingCart, FaArrowLeft } from 'react-icons/fa';
+import StripeCheckout from './StripeCheckout'; // Import the new StripeCheckout component
 
 // Define the Material interface
 interface Material {
@@ -245,12 +245,13 @@ const CartPage = () => {
                 </div>
               )}
               
-              <Link 
-                to="/checkout" 
-                className="w-full px-4 py-3 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center font-medium"
-              >
-                Proceed to Checkout
-              </Link>
+              {/* Replace Link with StripeCheckout component */}
+              <StripeCheckout 
+                cart={cart}
+                calculateSubtotal={calculateSubtotal}
+                calculateTax={calculateTax}
+                calculateShipping={calculateShipping}
+              />
             </div>
           </div>
         </div>
