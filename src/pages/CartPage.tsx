@@ -1,4 +1,3 @@
-// src/pages/CartPage.tsx
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
 import { Link } from 'react-router';

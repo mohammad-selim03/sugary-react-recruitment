@@ -7,47 +7,50 @@ import { Toaster } from "react-hot-toast";
 import MaterialDetailsPage from "./pages/MaterialDetails";
 import DashboardPage from "./pages/DashboardPages";
 import CartPage from "./pages/CartPage";
+import Layout from "./layout/Layout";
 
 function App() {
   return (
     <Router>
       <AuthProvider>
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/cart"
-            element={
-              <PrivateRoute>
-               <CartPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/"
-            element={
-              <PrivateRoute>
-               <DashboardPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
-            }
-          />
-           
-          <Route
-            path="/material/:id"
-            element={
-              <PrivateRoute>
-                <MaterialDetailsPage />
-              </PrivateRoute>
-            }
-          />
-          <Route path="*" element={<Navigate to="/dashboard" />} />
+          <Route path="/" element={<Layout />}>
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/cart"
+              element={
+                <PrivateRoute>
+                  <CartPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/"
+              element={
+                <PrivateRoute>
+                  <DashboardPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <Dashboard />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/material/:id"
+              element={
+                <PrivateRoute>
+                  <MaterialDetailsPage />
+                </PrivateRoute>
+              }
+            />
+            <Route path="*" element={<Navigate to="/dashboard" />} />
+          </Route>
         </Routes>
       </AuthProvider>
       <Toaster />
