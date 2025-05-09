@@ -123,7 +123,7 @@ const CartPage = () => {
       </div>
 
       {cart.length === 0 ? (
-        <div className="bg-gray-50 rounded-lg p-2 md:p-4 lg:p-6 xl:p-8 text-center shadow">
+        <div className="bg-gray-50 rounded-lg p-2 md:p-4 lg:p-6 xl:p-8 text-center flex flex-col items-center justify-center h-96 md:h-screen">
           <div className="text-gray-500 text-6xl mb-4 flex justify-center">
             <FaShoppingCart />
           </div>
@@ -138,10 +138,10 @@ const CartPage = () => {
       ) : (
         <div className="flex flex-col md:flex-row gap-6">
           {/* Left: Cart Items */}
-          <div className="w-full md:w-2/3">
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="overflow-x-auto">
-                <table className="min-w-[200px] border-4  md:min-w-[600px] overflow-hidden md:w-full text-sm text-gray-700">
+          <div className="w-full md:w-2/3 ">
+            <div className="md:bg-white rounded-lg md:shadow-md overflow-hidden">
+              <div className="overflow-x-auto max-w-[350px] max-w-[450px]:w-[400px] md:w-full">
+                <table className="w-[250px] sm:w-full md:min-w-[600px] overflow-hidden md:w-full text-sm text-gray-700">
                   <thead>
                     <tr className="bg-gray-100 text-gray-600 uppercase text-xs tracking-wider">
                       <th className="px-4 py-3 text-left">Product</th>
@@ -297,7 +297,7 @@ const CartPage = () => {
               >
                 {calculateSubtotal() < 50 ? (
                   <>
-                    Add ${50 - calculateSubtotal()} more to get free shipping!
+                    Add ${50 - calculateSubtotal().toFixed(2)} more to get free shipping!
                   </>
                 ) : (
                   <>

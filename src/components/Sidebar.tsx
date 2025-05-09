@@ -32,13 +32,13 @@ const Sidebar = () => {
       >
         <h2 className="text-2xl font-bold text-blue-600 mb-6">MyShop</h2>
         <div className="flex flex-col items-start justify-between h-[90%]">
-          <nav className="flex-1 space-y-2">
+          <nav className="flex-1 space-y-2 w-full">
             {links.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
                 onClick={closeSidebar} // Close sidebar on link click
-                className={`flex items-center gap-3 px-3 py-2 rounded-lg transition ${
+                className={`flex items-center gap-3 px-3 py-2 rounded-lg transition w-full ${
                   pathname === link.to
                     ? "bg-blue-100 text-blue-700"
                     : "text-gray-700 hover:bg-gray-100"
@@ -52,7 +52,7 @@ const Sidebar = () => {
           </nav>
           <button
             onClick={handleLogout}
-            className="flex items-center gap-2 cursor-pointer text-red-500 mt-auto hover:underline"
+            className="flex items-center pl-3 gap-2 cursor-pointer text-red-500 mt-auto hover:underline"
             aria-label="Log out"
           >
             <FiLogOut />
@@ -70,24 +70,24 @@ const Sidebar = () => {
 
       {/* Mobile Sidebar */}
       <aside
-        className={`lg:hidden fixed h-screen inset-0 bg-white z-10 shadow-lg p-5 space-y-4 ${
+        className={`lg:hidden fixed h-screen  inset-0 bg-white z-10 shadow-lg p-5 space-y-4 ${
           isSidebarOpen ? "block" : "hidden"
         } transition-all`}
       >
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center w-[80%] overflow-hidden">
           <h2 className="text-2xl font-bold text-blue-600 mb-6">MyShop</h2>
           <button onClick={closeSidebar} className="text-gray-700">
             <FiX size={24} />
           </button>
         </div>
-        <div>
-          <nav className="space-y-2">
+        <div className="flex flex-col items-start justify-between w-[50%] h-[90%]">
+          <nav className="space-y-2 w-full">
             {links.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                onClick={closeSidebar} // Close sidebar on link click
-                className={`flex items-center gap-3 px-3 py-2 rounded-lg transition ${
+                onClick={closeSidebar}  
+                className={`flex items-center w-full gap-3 px-3 py-2 rounded-lg transition ${
                   pathname === link.to
                     ? "bg-blue-100 text-blue-700"
                     : "text-gray-700 hover:bg-gray-100"
@@ -101,7 +101,7 @@ const Sidebar = () => {
           </nav>
           <button
             onClick={handleLogout}
-            className="flex items-center gap-2 cursor-pointer text-red-500 mt-auto hover:underline"
+            className="flex items-center gap-2 pl-3 cursor-pointer text-red-500 mt-auto hover:underline"
             aria-label="Log out"
           >
             <FiLogOut />

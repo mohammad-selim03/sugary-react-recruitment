@@ -36,7 +36,7 @@ const Dashboard = () => {
   }, []);
 
   const pieData = [
-    // { name: 'Cart Items', value: itemCount },
+    { name: 'Cart Items', value: itemCount },
     { name: 'Wishlist Items', value: wishlistCount },
     { name: 'Orders', value: orderCount }
   ];
@@ -118,7 +118,7 @@ interface CardProps {
 }
 
 const Card = ({ title, count, icon, color }: CardProps) => (
-  <div className="bg-white flex flex-col items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 rounded-2xl p-6 text-center border border-gray-100">
+  <div className="bg-white flex flex-col items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 rounded-2xl p-6 text-center border border-gray-100 hover:-translate-y-2">
     <div className={`text-4xl mb-3 ${color}`}>{icon}</div>
     <h2 className="text-lg font-semibold text-gray-600">{title}</h2>
     <p className="text-3xl font-bold text-gray-900">{count}</p>
