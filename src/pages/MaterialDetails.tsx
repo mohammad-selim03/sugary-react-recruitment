@@ -154,9 +154,10 @@ export default function MaterialDetailsPage() {
   }
 
   if (!material) return null;
+  console.log("photo", imageBaseUrl + material.CoverPhoto);
 
   return (
-    <div className="max-w-4xl mx-auto p-1 md:p-4 lg:p-6">
+    <div className="max-w-full mx-auto p-1 md:p-4 lg:p-6">
       <button
         className="mb-6 flex items-center gap-1 cursor-pointer px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
         onClick={() => navigate(-1)}
@@ -164,11 +165,11 @@ export default function MaterialDetailsPage() {
        <BsArrowLeft /> Back
       </button>
 
-      <div className="bg-white rounded-xl shadow-md overflow-hidden">
+      <div className="flex items-start overflow-hidden">
         <img
           src={`${imageBaseUrl}${material.CoverPhoto}`}
           alt={material.Title}
-          className="w-full h-80 object-cover"
+          className="w-full h-80 object-cover rounded-md"
           onError={(e) => {
             (e.target as HTMLImageElement).src = "/fallback.jpg";
           }}
@@ -185,7 +186,7 @@ export default function MaterialDetailsPage() {
 
           {/* Add to cart button */}
           <button
-            className="mt-4 px-6 py-3 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 flex items-center transition-colors"
+            className="mt-4 px-6 py-3 cursor-pointer bg-green-500 text-white rounded-lg shadow hover:bg-green-600 flex items-center transition-colors"
             onClick={handleAddToCart}
           >
             <svg 
@@ -243,6 +244,8 @@ export default function MaterialDetailsPage() {
             )}
           </div>
 
+        </div>
+      </div>
           {relatedProducts.length > 0 && (
             <div className="mt-8">
               <h3 className="text-lg font-semibold mb-2">Related Products</h3>
@@ -266,8 +269,6 @@ export default function MaterialDetailsPage() {
               </div>
             </div>
           )}
-        </div>
-      </div>
     </div>
   );
 }

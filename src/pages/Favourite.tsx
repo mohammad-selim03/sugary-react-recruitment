@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { CgSpinner } from "react-icons/cg"; // For loading indicator
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft, FaTrash } from "react-icons/fa";
 import { Link } from "react-router";
 
 const Favourite = () => {
@@ -40,12 +40,18 @@ const Favourite = () => {
       ) : wishlist.length === 0 ? (
         <div className="flex flex-col items-center justify-center gap-5 h-60">
           <p className="text-center text-gray-500">Your wishlist is empty.</p>
-          <Link to={"/materials"}><button className="bg-blue-500 px-5 py-2.5 rounded-full text-white cursor-pointer flex items-center gap-0"><FaArrowLeft className="mr-2" />Browse Materials</button></Link>
+          <Link to={"/materials"}>
+            <button className="bg-blue-500 px-5 py-2.5 rounded-full text-white cursor-pointer flex items-center gap-0">
+              <FaArrowLeft className="mr-2" />
+              Browse Materials
+            </button>
+          </Link>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {wishlist.map((product) => (
-            <div
+            <Link
+              to={`/material/${product.Id}`}
               key={product.Id}
               className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition duration-300 overflow-hidden"
             >
@@ -67,18 +73,20 @@ const Favourite = () => {
                   {product.Title}
                 </h3>
                 <p className="text-sm text-gray-500">{product.BrandName}</p>
-                <p className="text-blue-600 font-bold mt-2">
-                  ${product.SalesPriceInUsd.toFixed(2)}
-                </p>
+                <div className="flex justify-between items-center mt-2">
+                  <p className="text-blue-600 font-bold mt-2">
+                    ${product.SalesPriceInUsd.toFixed(2)}
+                  </p>
 
-                <button
-                  className="mt-3 px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                  onClick={() => removeFromWishlist(product.Id)}
-                >
-                  Remove from Wishlist
-                </button>
+                  <button
+                    className="mt-3 px-3 py-2 text-red-500 rounded hover:text-red-600"
+                    onClick={() => removeFromWishlist(product.Id)}
+                  >
+                    <FaTrash size={20} />
+                  </button>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       )}

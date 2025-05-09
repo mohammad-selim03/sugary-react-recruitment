@@ -1,54 +1,65 @@
-# React + TypeScript + Vite
+Sugary React Recruitment Task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my submission for the Frontend Developer (React)recruitment task! This project demonstrates a fully functional React application with authentication, dashboard features, lazy-loaded materials, and a clean, user-friendly UI — all built with a focus on performance, structure, and usability.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Live Demo
 
-## Expanding the ESLint configuration
+ [Live Site on Vercel](https://your-live-link.vercel.app)  
+ [GitHub Repository](https://github.com/your-username/sugary-react-recruitment)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+ Features
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+ Authentication
+- Secure login using JWT access and refresh tokens
+- Automatic token renewal with session persistence
+- Auth-guarded routes and protected dashboard
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+ Dashboard
+- Lazy-loaded list of Materials on materials page fetched from API
+- Overview of products
+- Each material card includes title, brand, and dynamic pricing
+- Fully responsive and mobile-friendly
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+ Favourite &  Cart Functionality
+- Add items to favourites with visual feedback
+- Add to cart with quantity and subtotal calculation
+- Persistent state with context and localStorage
+
+ UI/UX
+- Built with TailwindCSS for rapid and consistent styling
+- Clean, modern design with interactive states and transitions
+- Thoughtful layout, loading indicators, and error handling
+
+ 
+
+ -Tech Stack 
+  
+ -React  for  UI and state management     
+ -React Router for Navigation and route protection  
+ -Tailwind CSS for Design system and layout    
+ -Axios for HTTP requests and API integration   
+ -React Hot Toast for  Toast notifications     
+ -Vercel  for Deployment           
+
+
+ -API Integration
+
+Base URLs:
+- API: `https://sugarytestapi.azurewebsites.net`
+- Images: `https://d1wh1xji6f82aw.cloudfront.net`
+
+Sample Endpoints Used:
+
+- `POST /AdminAccount/Login` – Login & retrieve tokens
+- `POST /Account/RefreshToken` – Token renewal
+- `GET /Materials/GetAll/` – Material list with pagination (`filter` query encoded in base64)
+
+Base64 Filter Example:
+```json
+{
+  "Skip": 0,
+  "Limit": 20,
+  "Types": [1]
+}

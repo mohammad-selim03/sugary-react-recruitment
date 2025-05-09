@@ -16,7 +16,7 @@ import {
 import { CartContext } from '../context/CartContext';
 
 const Dashboard = () => {
-  const { cart, itemCount } = useContext(CartContext);
+  const { itemCount } = useContext(CartContext);
 
   const [totalProducts, setTotalProducts] = useState(0);
   const [wishlistCount, setWishlistCount] = useState(0);
@@ -36,7 +36,7 @@ const Dashboard = () => {
   }, []);
 
   const pieData = [
-    { name: 'Cart Items', value: itemCount },
+    // { name: 'Cart Items', value: itemCount },
     { name: 'Wishlist Items', value: wishlistCount },
     { name: 'Orders', value: orderCount }
   ];

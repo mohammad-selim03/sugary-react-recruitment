@@ -10,10 +10,12 @@ import CartPage from "./pages/CartPage";
 import Layout from "./layout/Layout";
 import Favourite from "./pages/Favourite";
 import Materials from "./pages/Materials";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <AuthProvider>
         <Routes>
           <Route path="/login" element={<Login />} />

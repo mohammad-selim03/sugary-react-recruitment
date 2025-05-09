@@ -1,6 +1,4 @@
-import { Link, Outlet, useLocation } from "react-router";
-import { FaBoxOpen } from "react-icons/fa";
-import { FiLogOut, FiX } from "react-icons/fi";
+import { Outlet, useLocation } from "react-router";
 import Sidebar from "../components/Sidebar";
 
 export default function Layout() {
@@ -39,8 +37,6 @@ export default function Layout() {
           <Outlet />
         </main>
       </div>
- 
-      
     </div>
   );
 }

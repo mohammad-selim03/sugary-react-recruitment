@@ -138,10 +138,10 @@ const CartPage = () => {
       ) : (
         <div className="flex flex-col md:flex-row gap-6">
           {/* Left: Cart Items */}
-          <div className="w-full md:w-2/3 ">
+          <div className="w-full md:w-2/3">
             <div className="md:bg-white rounded-lg md:shadow-md overflow-hidden">
-              <div className="overflow-x-auto max-w-[350px] max-w-[450px]:w-[400px] md:w-full">
-                <table className="w-[250px] sm:w-full md:min-w-[600px] overflow-hidden md:w-full text-sm text-gray-700">
+              <div className="overflow-x-auto max-w-[350px] max-w-[450px]:w-[400px] sm:max-w-full md:w-full">
+                <table className="  sm:w-full md:min-w-[600px] overflow-hidden md:w-full text-sm text-gray-700">
                   <thead>
                     <tr className="bg-gray-100 text-gray-600 uppercase text-xs tracking-wider">
                       <th className="px-4 py-3 text-left">Product</th>
