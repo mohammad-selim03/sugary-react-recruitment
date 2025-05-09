@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
+import toast from 'react-hot-toast';
 
 // Replace with your Stripe publishable key
 const stripePromise = loadStripe('pk_test_51O7qmVGR9hlKk72pMHG35MMR7ZuvW4xFgWERZsV4r0UtjXuG4gTgKsfM4utp2WhMrr8iyDTsihLLthcbem1t0yEq000EoeHwMX');
@@ -38,7 +39,7 @@ const StripeCheckout: React.FC<StripeCheckoutProps> = ({
       const stripe = await stripePromise;
       
       if (!stripe) {
-        alert("Stripe failed to load. Please try again later.");
+        toast.error("Stripe failed to load. Please try again later.");
         setIsProcessing(false);
         return;
       }
@@ -76,11 +77,11 @@ const StripeCheckout: React.FC<StripeCheckoutProps> = ({
       
       if (error) {
         console.error('Stripe checkout error:', error);
-        alert('Payment failed: ' + error.message);
+        toast.error('Payment failed: ' + error.message);
       }
     } catch (err) {
       console.error('Error during checkout:', err);
-      alert('An error occurred during checkout. Please try again.');
+      toast.error('An error occurred during checkout. Please try again.');
     } finally {
       setIsProcessing(false);
     }

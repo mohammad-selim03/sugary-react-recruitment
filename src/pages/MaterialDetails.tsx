@@ -5,6 +5,7 @@ import axios from 'axios';
 import { CgSpinner } from 'react-icons/cg';
 import toast from 'react-hot-toast';
 import { CartContext } from '../context/CartContext';
+import { BsArrowLeft } from 'react-icons/bs';
 
 // Make sure we're using the full API URL
 const API_BASE_URL = "https://sugarytestapi.azurewebsites.net";
@@ -132,7 +133,7 @@ export default function MaterialDetailsPage() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-64 text-gray-500">
+      <div className="flex justify-center items-center h-screen text-gray-500">
         <CgSpinner className="animate-spin text-2xl mr-2" /> Loading...
       </div>
     );
@@ -155,12 +156,12 @@ export default function MaterialDetailsPage() {
   if (!material) return null;
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-4xl mx-auto p-1 md:p-4 lg:p-6">
       <button
-        className="mb-6 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+        className="mb-6 flex items-center gap-1 cursor-pointer px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
         onClick={() => navigate(-1)}
       >
-        Back
+       <BsArrowLeft /> Back
       </button>
 
       <div className="bg-white rounded-xl shadow-md overflow-hidden">

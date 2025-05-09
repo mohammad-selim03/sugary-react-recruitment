@@ -8,19 +8,37 @@ import MaterialDetailsPage from "./pages/MaterialDetails";
 import DashboardPage from "./pages/DashboardPages";
 import CartPage from "./pages/CartPage";
 import Layout from "./layout/Layout";
+import Favourite from "./pages/Favourite";
+import Materials from "./pages/Materials";
 
 function App() {
   return (
     <Router>
       <AuthProvider>
         <Routes>
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<Layout />}>
-            <Route path="/login" element={<Login />} />
+            <Route
+              path="/materials"
+              element={
+                <PrivateRoute>
+                  <Materials />
+                </PrivateRoute>
+              }
+            />
             <Route
               path="/cart"
               element={
                 <PrivateRoute>
                   <CartPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/favourite"
+              element={
+                <PrivateRoute>
+                  <Favourite />
                 </PrivateRoute>
               }
             />
