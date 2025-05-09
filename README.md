@@ -5,8 +5,8 @@ Welcome to my submission for the Frontend Developer (React)recruitment task! Thi
 
 Live Demo
 
- [Live Site on Vercel](https://your-live-link.vercel.app)  
- [GitHub Repository](https://github.com/your-username/sugary-react-recruitment)
+ [Live Site on Vercel](https://sugary-react-recruitment-task.netlify.app/)  
+ [GitHub Repository](https://github.com/mohammad-selim03/sugary-react-recruitment)
 
 
  Features
