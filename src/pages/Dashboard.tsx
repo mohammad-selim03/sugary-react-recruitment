@@ -18,7 +18,7 @@ import { CartContext } from '../context/CartContext';
 const Dashboard = () => {
   const { itemCount } = useContext(CartContext);
 
-  const [totalProducts, setTotalProducts] = useState(0);
+  const [totalProducts, setTotalProducts] = useState(2918);
   const [wishlistCount, setWishlistCount] = useState(0);
   const [orderCount, setOrderCount] = useState(0);
 
@@ -36,10 +36,12 @@ const Dashboard = () => {
   }, []);
 
   const pieData = [
-    // { name: 'Cart Items', value: itemCount },
+    { name: 'Total Products', value: 2918 },
     { name: 'Wishlist Items', value: wishlistCount },
-    { name: 'Orders', value: orderCount }
+    // { name: 'Orders', value: orderCount }
   ];
+
+  console.log("wishlistCount", wishlistCount);
 
   const COLORS = ['#34D399', '#F472B6', '#FBBF24'];
 
@@ -52,7 +54,7 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
         <Card
           title="Total Products"
-          count={totalProducts}
+          count={2918}
           icon={<FaBoxOpen />}
           color="text-indigo-500"
         />
